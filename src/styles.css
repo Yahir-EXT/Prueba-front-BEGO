@@ -1,7 +1,20 @@
+:root {
+    --color-fondo: #000000;
+    --color-superficie: #080C0F;
+    --color-primario: #FFEE00;
+    --color-texto: #FFFFFF;
+    --color-texto-secundario: #EDEDED;
+    --color-texto-terciario: #969798;
+    --color-estado-azul: #0C7DED;
+
+}
+
 *{
     box-sizing: border-box;
 }/* You can add global styles to this file, and also import other style files */
 
 body {
     margin: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
 }
