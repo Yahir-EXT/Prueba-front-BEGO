@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Pedido } from '../../models/order.model';
 import { Orders } from '../../services/orders';
 
@@ -10,11 +10,11 @@ import { Orders } from '../../services/orders';
 })
 export class OrdersList implements OnInit {
   private orderService = inject(Orders);
-  datos: Pedido[] = [];
+  datos = signal<Pedido[]>([]);
 
   ngOnInit() {
     this.orderService.getUpcomingOrders().subscribe(respuesta => {
-      this.datos = respuesta.result;
+      this.datos.set(respuesta.result);
     });
   }
 }

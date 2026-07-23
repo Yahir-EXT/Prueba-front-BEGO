@@ -1,1 +1,18 @@
-<p>orders-list works!</p>
+<div>
+    @for (pedido of datos(); track pedido._id){
+    <div>
+        <h3>{{ pedido.order_number }}</h3>
+        <p>{{ pedido.type }}</p>
+        <p>{{ pedido.status_string }}</p>
+
+        @for (destino of pedido.destinations; track destino.address){
+        <div>
+            <p>{{ destino.nickname  }}</p>
+            <p>{{ destino.address  }}</p>
+            <p>{{ destino.start_date  }}</p>
+
+        </div>
+        }
+    </div>
+    }
+</div>
