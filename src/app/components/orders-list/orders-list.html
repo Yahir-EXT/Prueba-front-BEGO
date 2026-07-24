@@ -40,7 +40,8 @@
                                     <p class="fila__detalle">{{ destino.address }}</p>
                                 </div>
                                 <div class="fila__derecha">
-                                    <p class="fila__fecha">{{ destino.start_date }}</p>
+                                    <p class="fila__fecha">{{ destino.start_date | date:'dd/MM/yy' }}</p>
+                                    <p class="fila__hora">{{ destino.start_date | date:'HH:mm' }}</p>
                                 </div>
                             </div>
                         }

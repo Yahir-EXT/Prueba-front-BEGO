@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Pedido } from '../../models/order.model';
 import { Orders } from '../../services/orders';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-orders-list',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './orders-list.html',
   styleUrl: './orders-list.css',
 })
