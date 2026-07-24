@@ -11,10 +11,13 @@ import { Orders } from '../../services/orders';
 export class OrdersList implements OnInit {
   private orderService = inject(Orders);
   datos = signal<Pedido[]>([]);
+  cargaCompleta : boolean = false;
 
   ngOnInit() {
     this.orderService.getUpcomingOrders().subscribe(respuesta => {
       this.datos.set(respuesta.result);
+      this.cargaCompleta = true;
+      console.log(this.cargaCompleta)
     });
   }
 }

@@ -1,6 +1,3 @@
-* {
-  outline: 1px solid red;
-}
 
 :host {
     display: block;
@@ -51,4 +48,10 @@
 
 .bloque{
     min-width: 0;
+}
+
+.tarjeta__cuerpo{
+    width: 90%;
+    padding: 16px;
+    background-color: var(--color-superficie);
 }
