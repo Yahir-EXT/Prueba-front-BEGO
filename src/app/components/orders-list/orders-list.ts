@@ -12,13 +12,23 @@ import {DatePipe} from '@angular/common';
 export class OrdersList implements OnInit {
   private orderService = inject(Orders);
   datos = signal<Pedido[]>([]);
-  cargaCompleta : boolean = false;
 
   ngOnInit() {
     this.orderService.getUpcomingOrders().subscribe(respuesta => {
       this.datos.set(respuesta.result);
-      this.cargaCompleta = true;
-      console.log(this.cargaCompleta)
     });
+  }
+
+  obtenerCiudad(direccion: string): string{
+    const partes = direccion.split(',');
+    if(partes.length < 3){
+      return direccion.trim();
+    }
+    const segmentoCiudad = partes[partes.length -3].trim();
+    return segmentoCiudad.replace(/^\d+\s*/, '');
+  }
+
+  obtenerCalle(direccion: string): string{
+    return direccion.split(',')[0].trim();
   }
 }
