@@ -58,7 +58,7 @@
 }
 
 .fila__etiqueta{
-    color: var(--color-texto-tercxiario);
+    color: var(--color-texto-terciario);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -72,4 +72,98 @@
 .icono{
     width: 20px;
     height: auto;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.header h1{
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.tabs{
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #2C2C2C;
+}
+
+.tabs span{
+    color: var(--color-texto);
+    font-size: 14px;
+    cursor: pointer;
+    padding-bottom: 8px;
+    flex: 1;
+}
+
+.tab span:nth-child{
+    text-align: left;
+}
+
+.tabs span:nth-child(2){
+    text-align: center;
+}
+
+.tabs span:nth-child(3){
+    text-align: right;
+}
+
+.tab-activa{
+    border-bottom: 2px solid var(--color-primario);
+    color: var(--color-primario);
+    font-weight: 700;
+}
+
+.buscador{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #2C2C2C;
+    padding: 8px 0;
+}
+
+.buscador input{
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--color-texto);
+    font-size: 15px;
+    outline: none;
+}
+
+.tarjeta__pie{
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.btn{
+    border: none;
+    border-radius: 24px;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn--principal {
+    background: var(--color-primario);
+    color: #000000;
+}
+
+.btn--secundario {
+    background: var(--color-primario);
+    color: #000000;
 }
