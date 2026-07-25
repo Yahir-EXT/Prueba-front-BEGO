@@ -17,6 +17,7 @@ export class OrderDetail implements OnInit {
   idPedido = '';
   pedido = signal<Pedido | null>(null);
   panelAbierto = signal(false);
+  destinoActivo = signal(0);
 
   togglePanel() {
     this.panelAbierto.set(!this.panelAbierto());
@@ -45,5 +46,13 @@ export class OrderDetail implements OnInit {
 
   regresar() {
     this.location.back();
+  }
+
+  trackOrder(){
+    console.log('Track Order');
+  }
+
+  alternarDestino(){
+    this.destinoActivo.set(this.destinoActivo() === 0 ? 1 : 0);
   }
 }

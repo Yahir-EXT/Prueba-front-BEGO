@@ -240,3 +240,21 @@
     border-radius: 0 24px 24px 12px;
     margin-right: auto;
 }
+
+.pickup-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 0 24px 24px 12px;
+    background: #1A1A1A;
+    color: var(--color-texto);
+    margin-right: auto;
+}
+
+.pickup-timer__num {
+    color: var(--color-primario);
+    margin-left: 4px;
+}

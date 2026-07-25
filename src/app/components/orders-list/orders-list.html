@@ -12,12 +12,12 @@
 
 <div class="buscador">
     <img src="icons/search.svg" alt="" class="buscaodr__icono">
-    <input type="text" placeholder="Buscar">
+    <input type="text" placeholder="Buscar" (input)="actualizarBusqueda($any($event.target).value)">
 </div>
 
 
 <div class="lista">
-    @for (pedido of datos(); track pedido._id){
+    @for (pedido of datosFiltrados(); track pedido._id){
     <div class="bloque">
         <p class="bloque__titulo">
             Order <span class="bloque__numero">#{{ pedido.order_number }}</span>
@@ -63,7 +63,11 @@
 
             <div class="tarjeta__pie">
                 @if (pedido.status !== 3){
-                <button class="btn btn--secundario">Its time for pickup</button>
+                    @if (tiempoTerminado(pedido.start_date)){
+                        <button class="btn btn--secundario">Its time for pickup</button>
+                    } @else{
+                        <span class="pickup-timer">Start pickup in {{ tiempoRestante(ahora() + 90000) }}</span>
+                    }
                 }
                 <button class="btn btn--principal" [routerLink]="['/order', pedido._id]">
                     Resume<img src="icons/eye.svg" alt="" class="icono">

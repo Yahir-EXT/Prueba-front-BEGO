@@ -1,18 +1,19 @@
 @if (pedido(); as p) {
 <div class="header">
-    <img src="icons/back.svg" alt="" class="icono icono--header" (click)="regresar()" style="cursor: pointer;">
+    <img src="icons/back.svg" alt="" class="icono icono--header" (click)="regresar()">
     <h1>Cargo Details</h1>
     <img src="icons/bell.svg" alt="" class="icono icono--header">
 </div>
 
-<div class="ruta">
+<div class="ruta" (click)="alternarDestino()" >
     <p class="ruta__ref">Reference: {{ p.reference_number }}</p>
     <p class="ruta__orden">Order #{{ p.order_number }}</p>
 
-    @for (destino of p.destinations; track destino.address){
+    @let destino = p.destinations[destinoActivo()];
+
     <div class="ruta__punto">
         <div class="ruta__icono">
-            @if (destino.nickname === 'Recolección'){
+            @if (destinoActivo() === 0){
             <span class="badge badge--pickup">
                 <img src="icons/pickup.svg" alt="" class="badge__img">
             </span>
@@ -23,7 +24,7 @@
             }
         </div>
         <div class="ruta__info">
-            <p class="ruta__etiqueta">{{ $first ? 'PICKUP' : 'DROPOFF' }}</p>
+            <p class="ruta__etiqueta">{{ destinoActivo() === 0 ? 'PICKUP' : 'DROPOFF' }}</p>
             <p class="ruta__ciudad">{{ obtenerCiudad(destino.address) }}</p>
             <p class="ruta__calle">{{ obtenerCalle(destino.address) }}</p>
             <span class="ruta__estado">
@@ -32,7 +33,6 @@
             </span>
         </div>
     </div>
-    }
 </div>
 <div class="detalle-card">
     <div class="conductor">
@@ -49,7 +49,9 @@
         </div>
         }
     </div>
-    <button class="btn-track">Track Order</button>
+    <button class="btn-track" [disabled]="(pedido()?.status ?? 0) < 3" (click)="trackOrder()">
+        Track Order
+    </button>
 </div>
 <div class="panel">
     <button class="panel__head" (click)="togglePanel()">
