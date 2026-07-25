@@ -143,6 +143,7 @@
     gap: 8px;
     border-bottom: 1px solid #2C2C2C;
     padding: 8px 0;
+    margin-bottom: 16px;
 }
 
 .buscador input{
