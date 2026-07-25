@@ -1,42 +1,48 @@
 @if (pedido(); as p) {
-  <div class="header">
-    <img src="icons/back.svg" alt="" class="icon">
+<div class="header">
+    <img src="icons/back.svg" alt="" class="icono">
     <h1>Cargo Details</h1>
     <img src="icons/bell.svg" alt="" class="icono">
-  </div>
+</div>
 
-  <div class="ruta">
+<div class="ruta">
     <p class="ruta__ref">Reference: {{ p.reference_number }}</p>
     <p class="ruta__orden">Order #{{ p.order_number }}</p>
 
     @for (destino of p.destinations; track destino.address){
-        <div class="ruta__punto">
-            <div class="ruta__icono">
-                @if (destino.nickname === 'Recolección'){
-                <img src="icons/pickup.svg" alt="" class="icono">
-                } @else{
-                <img src="icons/pin.svg" alt="" class="icono">
-                }
-            </div>
-            <div class="ruta_ifno">
-                <p class="ruta__etiqueta">{{ destino.nickname }}</p>
-                <p class="ruta__ciudad">{{ obtenerCiudad(destino.address) }}</p>
-                <p class="ruta_calle">{{ obtenerCalle(destino.address) }}</p>
-                <span class="ruta__estado">
-                    <span class="punto" [class]="destino.status_class"></span>
-                     {{ destino.status_string }}
-                </span>
-            </div>
+    <div class="ruta__punto">
+        <div class="ruta__icono">
+            @if (destino.nickname === 'Recolección'){
+            <img src="icons/pickup.svg" alt="" class="icono">
+            } @else{
+            <img src="icons/pin.svg" alt="" class="icono">
+            }
         </div>
-    }
-  </div>
-  <div class="timeline">
-  @for (paso of p.status_list?.pickup; track paso.status) {
-    <div class="timeline__paso" [class.timeline__paso--activo]="paso.active">
-      <span class="timeline__check">✓</span>
-      <span class="timeline__texto">{{ paso.status }}</span>
+        <div class="ruta_ifno">
+            <p class="ruta__etiqueta">{{ destino.nickname }}</p>
+            <p class="ruta__ciudad">{{ obtenerCiudad(destino.address) }}</p>
+            <p class="ruta_calle">{{ obtenerCalle(destino.address) }}</p>
+            <span class="ruta__estado">
+                <span class="punto" [class]="destino.status_class"></span>
+                {{ destino.status_string }}
+            </span>
+        </div>
     </div>
-  }
-  <button class="btn-track">Track Order</button>
+    }
+</div>
+<div class="conductor">
+  <div class="conductor__avatar">
+    {{ p.driver?.nickname?.charAt(0) ?? '?' }}
+  </div>
+  <p class="conductor__hora">{{ p.start_date | date:'hh:mm a' }}</p>
+</div>
+<div class="timeline">
+    @for (paso of p.status_list?.pickup; track paso.status) {
+    <div class="timeline__paso" [class.timeline__paso--activo]="paso.active">
+        <span class="timeline__check">✓</span>
+        <span class="timeline__texto">{{ paso.status }}</span>
+    </div>
+    }
+    <button class="btn-track">Track Order</button>
 </div>
 }

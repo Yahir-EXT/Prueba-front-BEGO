@@ -15,6 +15,8 @@ export interface Pedido {
     destinations: Destino[];
     reference_number?: string;
     status_list?: StatusList;
+    driver?: { nickname?: string };
+    start_date?: number;
 }
 
 export interface Sobre<T> {
