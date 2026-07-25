@@ -1,6 +1,6 @@
 import { Service, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Pedido, Sobre  } from '../models/order.model';
+import { Pedido, Sobre, SobreDetalle  } from '../models/order.model';
 import { Observable } from 'rxjs';
 
 @Service()
@@ -10,5 +10,9 @@ export class Orders {
 
     getUpcomingOrders(): Observable<Sobre<Pedido>> {
         return this.http.get<Sobre<Pedido>>(`${this.urlBase}/orders/upcoming`);
+    }
+
+    getOrderDetail(id: string): Observable<SobreDetalle<Pedido>> {
+        return this.http.get<SobreDetalle<Pedido>>(`${this.urlBase}/orders`);
     }
 }

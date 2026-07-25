@@ -17,3 +17,8 @@ export interface Sobre<T>{
     status: number;
     result: T[];
 }
+
+export interface SobreDetalle<T>{
+    status: number;
+    result: T;
+}

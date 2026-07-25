@@ -1,1 +1,5 @@
-<h1 style="color: white;">Pedido: {{ idPedido }}</h1>
+@if (pedido(); as p) {
+  <h1 style="color:white">{{ p.order_number }}</h1>
+} @else {
+  <p style="color:white">Cargando...</p>
+}
