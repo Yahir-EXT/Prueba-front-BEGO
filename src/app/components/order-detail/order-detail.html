@@ -30,4 +30,12 @@
         </div>
     }
   </div>
+  <div class="timeline">
+  @for (paso of p.status_list?.pickup; track paso.status) {
+    <div class="timeline__paso" [class.timeline__paso--activo]="paso.active">
+      <span class="timeline__check">✓</span>
+      <span class="timeline__texto">{{ paso.status }}</span>
+    </div>
+  }
+</div>
 }

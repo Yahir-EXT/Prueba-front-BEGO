@@ -28,3 +28,37 @@
     gap: 12px;
     margin-top: 12px;
 }
+
+.timeline {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timeline__paso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-texto-terciario);
+}
+
+.timeline__check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-texto-terciario);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.timeline__paso--activo {
+  color: var(--color-texto);
+}
+
+.timeline__paso--activo .timeline__check {
+  background: var(--color-primario);
+}

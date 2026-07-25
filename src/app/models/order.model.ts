@@ -14,6 +14,7 @@ export interface Pedido {
     status_class: string;
     destinations: Destino[];
     reference_number?: string;
+    status_list?: StatusList;
 }
 
 export interface Sobre<T> {
@@ -24,4 +25,14 @@ export interface Sobre<T> {
 export interface SobreDetalle<T> {
     status: number;
     result: T;
+}
+
+export interface PasoEstado {
+    active: boolean;
+    status: string;
+}
+
+export interface StatusList {
+    pickup: PasoEstado[];
+    dropoff: PasoEstado[];
 }
