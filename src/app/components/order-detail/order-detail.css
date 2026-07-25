@@ -1,0 +1,30 @@
+:host{
+    display: block;
+    padding: 0 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.header h1 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.ruta {
+    background: var(--color-superficie);
+    border: 1px solid #2C2C2C;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.ruta__punto{
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
