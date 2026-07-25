@@ -1,11 +1,11 @@
 <div class="header">
-    <img src="icons/back.svg" alt="" class="icon">
+    <img src="icons/back.svg" alt="" class="icono icono--header">
     <h1>Cargo Orders</h1>
-    <img src="icons/bell.svg" alt="" class="icono">
+    <img src="icons/bell.svg" alt="" class="icono icono--header">
 </div>
 
 <div class="tabs">
-    <span class="tab-activa">Upcoming</span>
+    <span class="tab-activa"><span class="tab-activa__txt">Upcoming</span></span>
     <span>Completed</span>
     <span>Past</span>
 </div>
@@ -35,7 +35,7 @@
                 </span>
                 <span class="tarjeta__estado">
                     <span class="punto" [class]="pedido.status_class"></span>
-                     {{ pedido.status_string }}</span>
+                    {{ pedido.status_string }}</span>
             </div>
 
             <div class="tarjeta__cuerpo">
@@ -62,9 +62,11 @@
             </div>
 
             <div class="tarjeta__pie">
+                @if (pedido.status !== 3){
                 <button class="btn btn--secundario">Its time for pickup</button>
+                }
                 <button class="btn btn--principal" [routerLink]="['/order', pedido._id]">
-                    <img src="icons/eye.svg" alt="" class="icono">Resume
+                    Resume<img src="icons/eye.svg" alt="" class="icono">
                 </button>
             </div>
         </div>

@@ -1,15 +1,22 @@
 export interface Destino {
     nickname: string;
     address: string;
-    start_date: number;
+    start_date?: number;
+    startDate?: number;
     status_string?: string;
     status_class?: string;
+    contact_info?: {
+        name?: string;
+        telephone?: string;
+        email?: string;
+    };
 }
 
 export interface Pedido {
     _id: string;
     order_number: string;
     type: string;
+    status: number;
     status_string: string;
     status_class: string;
     destinations: Destino[];
@@ -17,6 +24,7 @@ export interface Pedido {
     status_list?: StatusList;
     driver?: { nickname?: string };
     start_date?: number;
+    startDate?: number;
 }
 
 export interface Sobre<T> {

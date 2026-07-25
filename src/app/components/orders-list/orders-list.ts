@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Pedido } from '../../models/order.model';
 import { Orders } from '../../services/orders';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -20,16 +20,16 @@ export class OrdersList implements OnInit {
     });
   }
 
-  obtenerCiudad(direccion: string): string{
+  obtenerCiudad(direccion: string): string {
     const partes = direccion.split(',');
-    if(partes.length < 3){
+    if (partes.length < 3) {
       return direccion.trim();
     }
-    const segmentoCiudad = partes[partes.length -3].trim();
+    const segmentoCiudad = partes[partes.length - 3].trim();
     return segmentoCiudad.replace(/^\d+\s*/, '');
   }
 
-  obtenerCalle(direccion: string): string{
+  obtenerCalle(direccion: string): string {
     return direccion.split(',')[0].trim();
   }
 }

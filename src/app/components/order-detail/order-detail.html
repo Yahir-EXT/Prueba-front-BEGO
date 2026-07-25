@@ -1,8 +1,8 @@
 @if (pedido(); as p) {
 <div class="header">
-    <img src="icons/back.svg" alt="" class="icono">
+    <img src="icons/back.svg" alt="" class="icono icono--header" (click)="regresar()" style="cursor: pointer;">
     <h1>Cargo Details</h1>
-    <img src="icons/bell.svg" alt="" class="icono">
+    <img src="icons/bell.svg" alt="" class="icono icono--header">
 </div>
 
 <div class="ruta">
@@ -13,15 +13,19 @@
     <div class="ruta__punto">
         <div class="ruta__icono">
             @if (destino.nickname === 'Recolección'){
-            <img src="icons/pickup.svg" alt="" class="icono">
+            <span class="badge badge--pickup">
+                <img src="icons/pickup.svg" alt="" class="badge__img">
+            </span>
             } @else{
-            <img src="icons/pin.svg" alt="" class="icono">
+            <span class="badge badge--dropoff">
+                <img src="icons/pin.svg" alt="" class="badge__img">
+            </span>
             }
         </div>
-        <div class="ruta_ifno">
-            <p class="ruta__etiqueta">{{ destino.nickname }}</p>
+        <div class="ruta__info">
+            <p class="ruta__etiqueta">{{ $first ? 'PICKUP' : 'DROPOFF' }}</p>
             <p class="ruta__ciudad">{{ obtenerCiudad(destino.address) }}</p>
-            <p class="ruta_calle">{{ obtenerCalle(destino.address) }}</p>
+            <p class="ruta__calle">{{ obtenerCalle(destino.address) }}</p>
             <span class="ruta__estado">
                 <span class="punto" [class]="destino.status_class"></span>
                 {{ destino.status_string }}
@@ -30,19 +34,38 @@
     </div>
     }
 </div>
-<div class="conductor">
-  <div class="conductor__avatar">
-    {{ p.driver?.nickname?.charAt(0) ?? '?' }}
-  </div>
-  <p class="conductor__hora">{{ p.start_date | date:'hh:mm a' }}</p>
+<div class="detalle-card">
+    <div class="conductor">
+        <div class="conductor__avatar">
+            {{ p.driver?.nickname?.charAt(0) ?? '?' }}
+        </div>
+        <p class="conductor__hora">{{ p.destinations[0].startDate | date:'hh:mm a' }}</p>
+    </div>
+    <div class="timeline">
+        @for (paso of p.status_list?.pickup; track paso.status) {
+        <div class="timeline__paso" [class.timeline__paso--activo]="paso.active">
+            <span class="timeline__check">✓</span>
+            <span class="timeline__texto">{{ paso.status }}</span>
+        </div>
+        }
+    </div>
+    <button class="btn-track">Track Order</button>
 </div>
-<div class="timeline">
-    @for (paso of p.status_list?.pickup; track paso.status) {
-    <div class="timeline__paso" [class.timeline__paso--activo]="paso.active">
-        <span class="timeline__check">✓</span>
-        <span class="timeline__texto">{{ paso.status }}</span>
+<div class="panel">
+    <button class="panel__head" (click)="togglePanel()">
+        Pickup Data
+        <span>{{ panelAbierto() ? '▲' : '▼' }}</span>
+    </button>
+
+    @if (panelAbierto()) {
+    @for (destino of p.destinations; track destino.address) {
+    <div class="panel__body">
+        <p>{{ destino.address }}</p>
+        <p>{{ destino.startDate | date:"dd 'de' MMMM yyyy • HH:mm" }}</p>
+        <p>{{ destino.contact_info?.telephone }}</p>
+        <p>{{ destino.contact_info?.email }}</p>
     </div>
     }
-    <button class="btn-track">Track Order</button>
+    }
 </div>
 }
