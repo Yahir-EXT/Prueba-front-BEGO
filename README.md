@@ -1,59 +1,50 @@
-# BegoFrontendTest
+# Prueba Técnica Front-End — BEGO
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.8.
+Aplicación de dos pantallas que consume la API mock de BEGO: un listado de pedidos (Cargo Orders) y el detalle de un pedido (Cargo Details).
 
-## Development server
+## Demo
 
-To start a local development server, run:
+🔗 https://prueba-front-bego.vercel.app
+
+## Stack
+
+- Angular 22 (standalone components, signals)
+- TypeScript
+- RxJS
+- HttpClient para consumo de API
+- Open Sans (tipografía del diseño)
+
+## Cómo correr en local
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abrir en `http://localhost:4200`
 
-## Code scaffolding
+## Endpoints consumidos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Pedidos próximos: `GET /orders/upcoming`
+- Todos los pedidos: `GET /orders`
 
-```bash
-ng generate component component-name
-```
+Base: `https://129bc152-6319-4e38-b755-534a4ee46195.mock.pstmn.io`
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Decisiones y limitaciones conocidas
 
-```bash
-ng generate --help
-```
+Estas decisiones se tomaron con base en el comportamiento del mock de Postman:
 
-## Building
+- **El detalle usa un registro fijo:** el mock ignora el ID enviado y devuelve siempre el mismo pedido. El método `getOrderDetail(id)` conserva el parámetro `id` en su firma para reflejar cómo sería la petición real (`/orders/{id}`), aunque el mock no lo procese.
+- **Nombres inconsistentes en la API:** el campo de fecha llega como `start_date` en la lista y como `startDate` en el detalle. El modelo contempla ambos.
+- **Todos los pedidos son FTL:** aunque el código maneja el ícono para FCL, el mock solo devuelve pedidos tipo FTL, por lo que ese caso no se visualiza.
+- **Tabs Completed / Past:** no cuentan con endpoint propio en el mock, por lo que no muestran datos.
+- **Avatar del conductor:** se muestran las iniciales del nombre porque el thumbnail del conductor llega vacío/null.
+- **Botón "Its time for pickup":** se renderiza condicionalmente según el estado del pedido.
+- **Botones sin endpoint asociado** (Track Order, tabs, notificaciones): quedan como elementos visuales, ya que el mock no expone acciones para ellos.
 
-To build the project run:
+## Estructura
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `components/orders-list` — pantalla de listado
+- `components/order-detail` — pantalla de detalle
+- `services/orders` — servicio de consumo de API
+- `models/order.model` — interfaces tipadas
