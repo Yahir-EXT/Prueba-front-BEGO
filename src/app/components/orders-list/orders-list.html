@@ -33,7 +33,9 @@
                     <img src="icons/container.svg" alt="" class="icono">
                     } {{ pedido.type }}
                 </span>
-                <span class="tarjeta__estado"> {{ pedido.status_string }}</span>
+                <span class="tarjeta__estado">
+                    <span class="punto" [class]="pedido.status_class"></span>
+                     {{ pedido.status_string }}</span>
             </div>
 
             <div class="tarjeta__cuerpo">

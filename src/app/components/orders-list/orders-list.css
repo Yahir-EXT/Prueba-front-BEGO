@@ -6,7 +6,7 @@
 .tarjeta {
     background: var(--color-superficie);
     border-radius: 12px;
-    padding: 16px;
+    padding: 0px;
     border: 1px solid #2C2C2C;
     min-width: 0;
 }
@@ -51,10 +51,20 @@
     min-width: 0;
 }
 
+.tarjeta__cabecera{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #2C2C2C;
+    padding: 16px;
+}
+
 .tarjeta__cuerpo {
     width: 90%;
     padding: 16px;
     background-color: var(--color-superficie);
+    padding: 16px;
 }
 
 .tarjeta__tipo .icono{
@@ -148,6 +158,8 @@
     display: flex;
     gap: 12px;
     justify-content: space-between;
+    padding: 16px;
+    padding-top: 0;
 }
 
 .btn{
@@ -171,4 +183,26 @@
 .btn--secundario {
     background: var(--color-primario);
     color: #000000;
+}
+
+.punto{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.blue-dot-bg{
+    background-color: var(--color-estado-azul);
+}
+
+.grey-dot-bg{
+    background-color: var(--color-texto-terciario);
+}
+
+.tarjeta__estado{
+    display:flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
 }
