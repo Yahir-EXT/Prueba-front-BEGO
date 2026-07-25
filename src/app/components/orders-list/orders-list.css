@@ -57,6 +57,11 @@
     background-color: var(--color-superficie);
 }
 
+.tarjeta__tipo .icono{
+    height: 12px;
+    width: auto;
+}
+
 .fila__etiqueta{
     color: var(--color-texto-terciario);
     font-size: 11px;

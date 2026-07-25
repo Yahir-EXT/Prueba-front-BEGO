@@ -1,7 +1,7 @@
 <div class="header">
     <img src="icons/back.svg" alt="" class="icon">
-            <h1>Cargo Orders</h1>
-            <img src="icons/bell.svg" alt="" class="icono">
+    <h1>Cargo Orders</h1>
+    <img src="icons/bell.svg" alt="" class="icono">
 </div>
 
 <div class="tabs">
@@ -16,48 +16,54 @@
 </div>
 
 
-    <div class="lista">
-        @for (pedido of datos(); track pedido._id){
-        <div class="bloque">
-            <p class="bloque__titulo">
-                Order <span class="bloque__numero">#{{ pedido.order_number }}</span>
-            </p>
+<div class="lista">
+    @for (pedido of datos(); track pedido._id){
+    <div class="bloque">
+        <p class="bloque__titulo">
+            Order <span class="bloque__numero">#{{ pedido.order_number }}</span>
+        </p>
 
-            <div class="tarjeta">
-                
-                <div class="tarjeta__cabecera">
-                    <span class="tarjeta__tipo"> <img src="icons/truck.svg" alt="" class="icono"> {{ pedido.type }}</span>
-                    <span class="tarjeta__estado"> {{ pedido.status_string }}</span>
-                </div>
+        <div class="tarjeta">
 
-                <div class="tarjeta__cuerpo">
-                        @for (destino of pedido.destinations; track destino.address){
-                            <div class="fila">
-                                <div class="fila__icono">
-                                    @if (destino.nickname === 'Recolección'){
-                                        <img src="icons/pickup.svg" alt="" class="icono">
-                                    } @else{
-                                        <img src="icons/pin.svg" alt="" class="icono">
-                                    }
-                                </div>
-                                <div class="fila__centro">
-                                    <p class="fila__etiqueta"> {{ destino.nickname }}</p>
-                                    <p class="fila__titulo">{{ obtenerCiudad(destino.address) }}</p>
-                                    <p class="fila__detalle">{{ obtenerCalle(destino.address) }}</p>
-                                </div>
-                                <div class="fila__derecha">
-                                    <p class="fila__fecha">{{ destino.start_date | date:'dd/MM/yy' }}</p>
-                                    <p class="fila__hora">{{ destino.start_date | date:'HH:mm' }}</p>
-                                </div>
-                            </div>
+            <div class="tarjeta__cabecera">
+                <span class="tarjeta__tipo">
+                    @if (pedido.type === "FTL"){
+                    <img src="icons/truck.svg" alt="" class="icono">
+                    } @else{
+                    <img src="icons/container.svg" alt="" class="icono">
+                    } {{ pedido.type }}
+                </span>
+                <span class="tarjeta__estado"> {{ pedido.status_string }}</span>
+            </div>
+
+            <div class="tarjeta__cuerpo">
+                @for (destino of pedido.destinations; track destino.address){
+                <div class="fila">
+                    <div class="fila__icono">
+                        @if (destino.nickname === 'Recolección'){
+                        <img src="icons/pickup.svg" alt="" class="icono">
+                        } @else{
+                        <img src="icons/pin.svg" alt="" class="icono">
                         }
+                    </div>
+                    <div class="fila__centro">
+                        <p class="fila__etiqueta"> {{ destino.nickname }}</p>
+                        <p class="fila__titulo">{{ obtenerCiudad(destino.address) }}</p>
+                        <p class="fila__detalle">{{ obtenerCalle(destino.address) }}</p>
+                    </div>
+                    <div class="fila__derecha">
+                        <p class="fila__fecha">{{ destino.start_date | date:'dd/MM/yy' }}</p>
+                        <p class="fila__hora">{{ destino.start_date | date:'HH:mm' }}</p>
+                    </div>
                 </div>
+                }
+            </div>
 
-                <div class="tarjeta__pie">
-                    <button class="btn btn--secundario">Its time for pickup</button>
-                    <button class="btn btn--principal"><img src="icons/eye.svg" alt="" class="icono">Resume</button>
-                </div>
+            <div class="tarjeta__pie">
+                <button class="btn btn--secundario">Its time for pickup</button>
+                <button class="btn btn--principal"><img src="icons/eye.svg" alt="" class="icono">Resume</button>
             </div>
         </div>
-        }
     </div>
+    }
+</div>
