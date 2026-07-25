@@ -63,7 +63,9 @@
 
             <div class="tarjeta__pie">
                 <button class="btn btn--secundario">Its time for pickup</button>
-                <button class="btn btn--principal"><img src="icons/eye.svg" alt="" class="icono">Resume</button>
+                <button class="btn btn--principal" [routerLink]="['/order', pedido._id]">
+                    <img src="icons/eye.svg" alt="" class="icono">Resume
+                </button>
             </div>
         </div>
     </div>
