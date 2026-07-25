@@ -62,3 +62,17 @@
 .timeline__paso--activo .timeline__check {
   background: var(--color-primario);
 }
+
+.btn-track {
+  width: 100%;
+  background: var(--color-primario);
+  color: #000;
+  border: none;
+  border-radius: 24px;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 24px;
+}
